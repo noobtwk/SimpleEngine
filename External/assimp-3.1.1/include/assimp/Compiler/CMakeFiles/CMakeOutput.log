@@ -1,0 +1,348 @@
+The system is: Windows - 6.1.7601 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler:  
+Build flags: 
+Id flags: 
+
+The output was:
+0
+Microsoft (R) 生成引擎版本 14.0.24720.0
+版权所有(C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2016/6/27 21:51:00。
+项目中不存在 BeforeTargets 特性中的“C:\Program Files (x86)\MSBuild\Microsoft\NuGet\Microsoft.NuGet.targets (186,61)”位置列出的目标“BeforeGenerateProjectPriFile”，将忽略该目标。
+节点 1 上的项目“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\3.4.3\CompilerIdC\CompilerIdC.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“Debug\”。
+  正在创建目录“Debug\CompilerIdC.tlog\”。
+InitializeBuildStatus:
+  正在创建“Debug\CompilerIdC.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  E:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /nologo /W0 /WX- /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TC /analyze- /errorReport:queue CMakeCCompilerId.c
+  CMakeCCompilerId.c
+Link:
+  E:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdC.lib" /MACHINE:X86 /SAFESEH Debug\CMakeCCompilerId.obj
+  CompilerIdC.vcxproj -> D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\3.4.3\CompilerIdC\.\CompilerIdC.exe
+PostBuildEvent:
+  for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
+  :VCEnd
+  CMAKE_C_COMPILER=E:\Microsoft Visual Studio 12.0\VC\bin\cl.exe
+FinalizeBuildStatus:
+  正在删除文件“Debug\CompilerIdC.tlog\unsuccessfulbuild”。
+  正在对“Debug\CompilerIdC.tlog\CompilerIdC.lastbuildstate”执行 Touch 任务。
+已完成生成项目“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\3.4.3\CompilerIdC\CompilerIdC.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:04.39
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
+
+The C compiler identification is MSVC, found in "D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/3.4.3/CompilerIdC/CompilerIdC.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler:  
+Build flags: 
+Id flags: 
+
+The output was:
+0
+Microsoft (R) 生成引擎版本 14.0.24720.0
+版权所有(C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2016/6/27 21:51:06。
+项目中不存在 BeforeTargets 特性中的“C:\Program Files (x86)\MSBuild\Microsoft\NuGet\Microsoft.NuGet.targets (186,61)”位置列出的目标“BeforeGenerateProjectPriFile”，将忽略该目标。
+节点 1 上的项目“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\3.4.3\CompilerIdCXX\CompilerIdCXX.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“Debug\”。
+  正在创建目录“Debug\CompilerIdCXX.tlog\”。
+InitializeBuildStatus:
+  正在创建“Debug\CompilerIdCXX.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  E:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /nologo /W0 /WX- /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:queue CMakeCXXCompilerId.cpp
+  CMakeCXXCompilerId.cpp
+Link:
+  E:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdCXX.lib" /MACHINE:X86 /SAFESEH Debug\CMakeCXXCompilerId.obj
+  CompilerIdCXX.vcxproj -> D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\3.4.3\CompilerIdCXX\.\CompilerIdCXX.exe
+PostBuildEvent:
+  for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+  :VCEnd
+  CMAKE_CXX_COMPILER=E:\Microsoft Visual Studio 12.0\VC\bin\cl.exe
+FinalizeBuildStatus:
+  正在删除文件“Debug\CompilerIdCXX.tlog\unsuccessfulbuild”。
+  正在对“Debug\CompilerIdCXX.tlog\CompilerIdCXX.lastbuildstate”执行 Touch 任务。
+已完成生成项目“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\3.4.3\CompilerIdCXX\CompilerIdCXX.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:02.82
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+
+The CXX compiler identification is MSVC, found in "D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/3.4.3/CompilerIdCXX/CompilerIdCXX.exe"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_91508.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
+Microsoft (R) 生成引擎版本 14.0.24720.0
+版权所有(C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2016/6/27 21:51:10。
+项目中不存在 BeforeTargets 特性中的“C:\Program Files (x86)\MSBuild\Microsoft\NuGet\Microsoft.NuGet.targets (186,61)”位置列出的目标“BeforeGenerateProjectPriFile”，将忽略该目标。
+节点 1 上的项目“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\cmTC_91508.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“cmTC_91508.dir\Debug\”。
+  正在创建目录“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\Debug\”。
+  正在创建目录“cmTC_91508.dir\Debug\cmTC_91508.tlog\”。
+InitializeBuildStatus:
+  正在创建“cmTC_91508.dir\Debug\cmTC_91508.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  E:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_91508.dir\Debug\\" /Fd"cmTC_91508.dir\Debug\vc140.pdb" /Gd /TC /analyze- /errorReport:queue "D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\testCCompiler.c"
+  用于 x86 的 Microsoft (R) C/C++ 优化编译器 19.00.23506 版
+  版权所有(C) Microsoft Corporation。保留所有权利。
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_91508.dir\Debug\\" /Fd"cmTC_91508.dir\Debug\vc140.pdb" /Gd /TC /analyze- /errorReport:queue "D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\testCCompiler.c"
+  
+  testCCompiler.c
+Link:
+  E:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\Debug\cmTC_91508.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp/Debug/cmTC_91508.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp/Debug/cmTC_91508.lib" /MACHINE:X86 /SAFESEH  /machine:X86 /debug cmTC_91508.dir\Debug\testCCompiler.obj
+  cmTC_91508.vcxproj -> D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\Debug\cmTC_91508.exe
+  cmTC_91508.vcxproj -> D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp/Debug/cmTC_91508.pdb (Full PDB)
+FinalizeBuildStatus:
+  正在删除文件“cmTC_91508.dir\Debug\cmTC_91508.tlog\unsuccessfulbuild”。
+  正在对“cmTC_91508.dir\Debug\cmTC_91508.tlog\cmTC_91508.lastbuildstate”执行 Touch 任务。
+已完成生成项目“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\cmTC_91508.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:02.63
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_2f3e9.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
+Microsoft (R) 生成引擎版本 14.0.24720.0
+版权所有(C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2016/6/27 21:51:14。
+项目中不存在 BeforeTargets 特性中的“C:\Program Files (x86)\MSBuild\Microsoft\NuGet\Microsoft.NuGet.targets (186,61)”位置列出的目标“BeforeGenerateProjectPriFile”，将忽略该目标。
+节点 1 上的项目“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\cmTC_2f3e9.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“cmTC_2f3e9.dir\Debug\”。
+  正在创建目录“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\Debug\”。
+  正在创建目录“cmTC_2f3e9.dir\Debug\cmTC_2f3e9.tlog\”。
+InitializeBuildStatus:
+  正在创建“cmTC_2f3e9.dir\Debug\cmTC_2f3e9.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  E:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_2f3e9.dir\Debug\\" /Fd"cmTC_2f3e9.dir\Debug\vc140.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCCompilerABI.c"
+  用于 x86 的 Microsoft (R) C/C++ 优化编译器 19.00.23506 版
+  版权所有(C) Microsoft Corporation。保留所有权利。
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_2f3e9.dir\Debug\\" /Fd"cmTC_2f3e9.dir\Debug\vc140.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCCompilerABI.c"
+  
+  CMakeCCompilerABI.c
+Link:
+  E:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\Debug\cmTC_2f3e9.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp/Debug/cmTC_2f3e9.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp/Debug/cmTC_2f3e9.lib" /MACHINE:X86 /SAFESEH  /machine:X86 /debug cmTC_2f3e9.dir\Debug\CMakeCCompilerABI.obj
+  cmTC_2f3e9.vcxproj -> D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\Debug\cmTC_2f3e9.exe
+  cmTC_2f3e9.vcxproj -> D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp/Debug/cmTC_2f3e9.pdb (Full PDB)
+FinalizeBuildStatus:
+  正在删除文件“cmTC_2f3e9.dir\Debug\cmTC_2f3e9.tlog\unsuccessfulbuild”。
+  正在对“cmTC_2f3e9.dir\Debug\cmTC_2f3e9.tlog\cmTC_2f3e9.lastbuildstate”执行 Touch 任务。
+已完成生成项目“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\cmTC_2f3e9.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:02.47
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_4b456.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
+Microsoft (R) 生成引擎版本 14.0.24720.0
+版权所有(C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2016/6/27 21:51:17。
+项目中不存在 BeforeTargets 特性中的“C:\Program Files (x86)\MSBuild\Microsoft\NuGet\Microsoft.NuGet.targets (186,61)”位置列出的目标“BeforeGenerateProjectPriFile”，将忽略该目标。
+节点 1 上的项目“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\cmTC_4b456.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“cmTC_4b456.dir\Debug\”。
+  正在创建目录“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\Debug\”。
+  正在创建目录“cmTC_4b456.dir\Debug\cmTC_4b456.tlog\”。
+InitializeBuildStatus:
+  正在创建“cmTC_4b456.dir\Debug\cmTC_4b456.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  E:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_4b456.dir\Debug\\" /Fd"cmTC_4b456.dir\Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:queue "D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
+  用于 x86 的 Microsoft (R) C/C++ 优化编译器 19.00.23506 版
+  版权所有(C) Microsoft Corporation。保留所有权利。
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_4b456.dir\Debug\\" /Fd"cmTC_4b456.dir\Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:queue "D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
+  
+  testCXXCompiler.cxx
+Link:
+  E:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\Debug\cmTC_4b456.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp/Debug/cmTC_4b456.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp/Debug/cmTC_4b456.lib" /MACHINE:X86 /SAFESEH  /machine:X86 /debug cmTC_4b456.dir\Debug\testCXXCompiler.obj
+  cmTC_4b456.vcxproj -> D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\Debug\cmTC_4b456.exe
+  cmTC_4b456.vcxproj -> D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp/Debug/cmTC_4b456.pdb (Full PDB)
+FinalizeBuildStatus:
+  正在删除文件“cmTC_4b456.dir\Debug\cmTC_4b456.tlog\unsuccessfulbuild”。
+  正在对“cmTC_4b456.dir\Debug\cmTC_4b456.tlog\cmTC_4b456.lastbuildstate”执行 Touch 任务。
+已完成生成项目“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\cmTC_4b456.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:02.62
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_9d13d.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
+Microsoft (R) 生成引擎版本 14.0.24720.0
+版权所有(C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2016/6/27 21:51:21。
+项目中不存在 BeforeTargets 特性中的“C:\Program Files (x86)\MSBuild\Microsoft\NuGet\Microsoft.NuGet.targets (186,61)”位置列出的目标“BeforeGenerateProjectPriFile”，将忽略该目标。
+节点 1 上的项目“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\cmTC_9d13d.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“cmTC_9d13d.dir\Debug\”。
+  正在创建目录“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\Debug\”。
+  正在创建目录“cmTC_9d13d.dir\Debug\cmTC_9d13d.tlog\”。
+InitializeBuildStatus:
+  正在创建“cmTC_9d13d.dir\Debug\cmTC_9d13d.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  E:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_9d13d.dir\Debug\\" /Fd"cmTC_9d13d.dir\Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:queue "C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCXXCompilerABI.cpp"
+  用于 x86 的 Microsoft (R) C/C++ 优化编译器 19.00.23506 版
+  版权所有(C) Microsoft Corporation。保留所有权利。
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_9d13d.dir\Debug\\" /Fd"cmTC_9d13d.dir\Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:queue "C:\Program Files (x86)\CMake\share\cmake-3.4\Modules\CMakeCXXCompilerABI.cpp"
+  
+  CMakeCXXCompilerABI.cpp
+Link:
+  E:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\Debug\cmTC_9d13d.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp/Debug/cmTC_9d13d.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp/Debug/cmTC_9d13d.lib" /MACHINE:X86 /SAFESEH  /machine:X86 /debug cmTC_9d13d.dir\Debug\CMakeCXXCompilerABI.obj
+  cmTC_9d13d.vcxproj -> D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\Debug\cmTC_9d13d.exe
+  cmTC_9d13d.vcxproj -> D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp/Debug/cmTC_9d13d.pdb (Full PDB)
+FinalizeBuildStatus:
+  正在删除文件“cmTC_9d13d.dir\Debug\cmTC_9d13d.tlog\unsuccessfulbuild”。
+  正在对“cmTC_9d13d.dir\Debug\cmTC_9d13d.tlog\cmTC_9d13d.lastbuildstate”执行 Touch 任务。
+已完成生成项目“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\cmTC_9d13d.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:02.42
+
+
+
+
+Detecting CXX [] compiler features compiled with the following output:
+Change Dir: D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/MSBuild/14.0/bin/MSBuild.exe" "cmTC_9bead.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=14.0"
+Microsoft (R) 生成引擎版本 14.0.24720.0
+版权所有(C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2016/6/27 21:51:25。
+项目中不存在 BeforeTargets 特性中的“C:\Program Files (x86)\MSBuild\Microsoft\NuGet\Microsoft.NuGet.targets (186,61)”位置列出的目标“BeforeGenerateProjectPriFile”，将忽略该目标。
+节点 1 上的项目“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\cmTC_9bead.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“cmTC_9bead.dir\Debug\”。
+  正在创建目录“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\Debug\”。
+  正在创建目录“cmTC_9bead.dir\Debug\cmTC_9bead.tlog\”。
+InitializeBuildStatus:
+  正在创建“cmTC_9bead.dir\Debug\cmTC_9bead.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  E:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_9bead.dir\Debug\\" /Fd"cmTC_9bead.dir\Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:queue "D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\feature_tests.cxx"
+  用于 x86 的 Microsoft (R) C/C++ 优化编译器 19.00.23506 版
+  版权所有(C) Microsoft Corporation。保留所有权利。
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_9bead.dir\Debug\\" /Fd"cmTC_9bead.dir\Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:queue "D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\feature_tests.cxx"
+  
+  feature_tests.cxx
+Link:
+  E:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\Debug\cmTC_9bead.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp/Debug/cmTC_9bead.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp/Debug/cmTC_9bead.lib" /MACHINE:X86 /SAFESEH  /machine:X86 /debug cmTC_9bead.dir\Debug\feature_tests.obj
+  cmTC_9bead.vcxproj -> D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\Debug\cmTC_9bead.exe
+  cmTC_9bead.vcxproj -> D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/CMakeTmp/Debug/cmTC_9bead.pdb (Full PDB)
+FinalizeBuildStatus:
+  正在删除文件“cmTC_9bead.dir\Debug\cmTC_9bead.tlog\unsuccessfulbuild”。
+  正在对“cmTC_9bead.dir\Debug\cmTC_9bead.tlog\cmTC_9bead.lastbuildstate”执行 Touch 任务。
+已完成生成项目“D:\assimp-3.1.1\include\assimp\Compiler\CMakeFiles\CMakeTmp\cmTC_9bead.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:02.43
+
+
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates

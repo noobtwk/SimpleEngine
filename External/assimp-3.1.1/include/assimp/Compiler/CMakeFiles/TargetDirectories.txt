@@ -1,0 +1,2 @@
+D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/ALL_BUILD.dir
+D:/assimp-3.1.1/include/assimp/Compiler/CMakeFiles/ZERO_CHECK.dir
