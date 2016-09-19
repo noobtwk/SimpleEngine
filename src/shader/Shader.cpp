@@ -8,11 +8,9 @@ Shader::Shader(const char * vsPath, const char * fsPath)
 {
 	std::string vsCode;
 	std::string fsCode;
-	std::string gsCode;
 
 	std::ifstream vsFile;
 	std::ifstream fsFile;
-	std::ifstream gsFile;
 	try
 	{
 		vsFile.open(vsPath);
@@ -35,6 +33,7 @@ Shader::Shader(const char * vsPath, const char * fsPath)
 
 	const GLchar* vCode = vsCode.c_str();
 	const GLchar* fCode = fsCode.c_str();
+
 
 	GLuint vertex;
 	vertex = glCreateShader(GL_VERTEX_SHADER);
@@ -152,6 +151,13 @@ void Shader::setMatrix4(const GLchar * name, mat4 valuse, GLboolean useShader)
 	if (useShader)
 		this->Use();
 	glUniformMatrix4fv(glGetUniformLocation(this->program, name), 1, GL_FALSE, valuse.data());
+}
+
+void Shader::setMatrix4f(const GLchar * name, glm::mat4 valuse, GLboolean useShader)
+{
+	if (useShader)
+		this->Use();
+	glUniformMatrix4fv(glGetUniformLocation(this->program, name), 1, GL_FALSE, glm::value_ptr(valuse));
 }
 
 void Shader::setColor(const GLchar * name, vec3 valuse, GLboolean useShader)

@@ -15,9 +15,12 @@ public:
 	static FontMrg * share();
 	Font * getFont(std::string path,unsigned int size);
 
+	void getDefualtFont();
+
 private:
 	static FontMrg * instance;
 	std::map<std::string,Font *> fontList;
+	Font *defualtFont;
 };
 
 

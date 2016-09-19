@@ -1,7 +1,7 @@
 #include "RenderCommand.h"
 
-RenderCommand::RenderCommand(Mesh * mesh, Shader * shader, Texture2D *texture, vec3 pos, vec3 col, RenderType type)
-	:mesh(mesh), shader(shader), tex(texture), type(type), Zorder(0), pos(pos), color(col)
+RenderCommand::RenderCommand(Mesh * mesh, Shader * shader,Camera* camera ,Texture2D *texture, vec3 pos, vec3 col, RenderType type)
+	:mesh(mesh), shader(shader), tex(texture), type(type), Zorder(0), pos(pos), color(col),camera(camera)
 {
 }
 
@@ -28,6 +28,12 @@ vec3 RenderCommand::getColor() const
 {
 	return color;
 }
+
+Camera * RenderCommand::getCamera() const
+{
+	return camera;
+}
+
 
 RenderCommand::RenderType RenderCommand::getType() const
 {

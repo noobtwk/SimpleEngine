@@ -8,5 +8,8 @@ uniform vec3 Color;
 
 void main()
 {
-color = texture(texture1,TexCoords) * vec4(Color,1.0);
+	vec4 color1 = texture(texture1,TexCoords) * vec4(Color,1.0);
+	if(color1.a<0.1)
+		discard;
+	color = color1;
 }

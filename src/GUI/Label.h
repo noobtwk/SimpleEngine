@@ -7,39 +7,40 @@
 #include"FontMrg.h"
 #include"Mesh.h"
 #include"GlyphAtlas.h"
-#include"Shader.h"
 #include"ShaderManager.h"
+#include"DrawNode2D.h"
 
-class Label : public Node
+class Label : public DrawNode2D
 {
 public:
 	Label();
 	~Label(){};
 
+	void setPos(vec2 v);
+	void setPos(float x, float y);
+
 	static Label * create(std::string text,Font *font);
 	static Label * create(std::string text,std::string path,int size);
+	static Label * createL(std::string text, std::string path, int size);
 	void initWithhFont(Font *font);
 	void initWithPath(std::string path,unsigned int size);
 
 	virtual void draw();
-	void setContainSize(vec2 size);
 	void setStr(std::string s);
 	std::string getStr() const;
 	void initMesh();
-	void setShader();
+	void initShader();
 	GlyphAtlas *getAtlas() const;
-	vec3 getColor() const;
-	void setColor(const vec3 &col);
+
+
+	Mesh *getMesh();
 
 private:
 	void initAtlas();
 	Font *font;
-	vec2 containSize;
 	std::string str;
 	Mesh *mesh;
 	GlyphAtlas *atlas;
-	Shader *shader;
-	vec3 color;
 };
 
 #endif // !LABEL_H

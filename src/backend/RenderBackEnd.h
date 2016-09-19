@@ -19,6 +19,9 @@ public:
 	void bindVAO(GLuint vao);
 	void drawElements(RenderType::DrawType type,GLuint size,GLvoid *indices);
 	void drawArray(RenderType::DrawType type, GLuint first,GLuint size);
+	void setViewPort(GLuint x, GLuint y, GLuint w, GLuint h);
+
+	void init(GLuint w,GLuint h);
 
 	void enableFuction(RenderType::Fuction type);
 	void disableFuction(RenderType::Fuction type);

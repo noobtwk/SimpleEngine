@@ -172,4 +172,47 @@ void Quaternion::QuaToEuler(float * h, float * p, float * b)
 	*b = rotatoZ;
 }
 
+void Quaternion::fromAxises(vec3 xaxis, vec3 yaxis, vec3 zaxis)
+{
+	float trace = xaxis.x + yaxis.y + zaxis.z + 1.0f;
+
+	if (trace > 0.01)
+	{
+		float s = 0.5f / sqrtf(trace);
+		w = 0.25f / s;
+		x = (yaxis.z - zaxis.y) * s;
+		y = (zaxis.x - xaxis.z) * s;
+		z = (xaxis.y - yaxis.x) * s;
+	}
+	else
+	{
+		// Note: since xaxis, yaxis, and zaxis are normalized,
+		// we will never divide by zero in the code below.
+		if (xaxis.x > yaxis.y && xaxis.x > zaxis.z)
+		{
+			float s = 0.5f / sqrtf(1.0f + xaxis.x - yaxis.y - zaxis.z);
+			w = (yaxis.z - zaxis.y) * s;
+			x = 0.25f / s;
+			y = (yaxis.x + xaxis.y) * s;
+			z = (zaxis.x + xaxis.z) * s;
+		}
+		else if (yaxis.y > zaxis.z)
+		{
+			float s = 0.5f / sqrtf(1.0f + yaxis.y - xaxis.x - zaxis.z);
+			w = (zaxis.x - xaxis.z) * s;
+			x = (yaxis.x + xaxis.y) * s;
+			y = 0.25f / s;
+			z = (zaxis.y + yaxis.z) * s;
+		}
+		else
+		{
+			float s = 0.5f / sqrtf(1.0f + zaxis.z - xaxis.x - yaxis.y);
+			w = (xaxis.y - yaxis.x) * s;
+			x = (zaxis.x + xaxis.z) * s;
+			y = (zaxis.y + yaxis.z) * s;
+			z = 0.25f / s;
+		}
+	}
+}
+
 

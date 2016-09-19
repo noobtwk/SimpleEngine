@@ -44,37 +44,46 @@ void Render::render(RenderCommand & rendercommand)
 			rendercommand.mesh->calNormal();
 		rendercommand.mesh->initRenderData();
 	}
+
 	mat4 model;
-	mat4 projection;
 	model.translate(rendercommand.getPos());
-	projection.ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0, 1.0);
+
+	auto a = rendercommand.getCamera()->getProjectionView()*model;
+
 	rendercommand.shader->Use();
-	rendercommand.shader->setMatrix4("model", model, false);
-	rendercommand.shader->setMatrix4("projection", projection, false);
+	rendercommand.shader->setMatrix4("mvp_Matrix", rendercommand.getCamera()->getProjectionView()*model,false);
+	
+	//rendercommand.shader->setMatrix4("projection", projecton1, false);
+	//rendercommand.shader->setMatrix4("model", model, false);
+	
+
 	rendercommand.shader->setColor("Color", rendercommand.getColor(), false);
-	RenderBackEnd::share()->passTex((GLuint)0, rendercommand.tex->TextureID, RenderType::TexType::Tex2D);
-	glBindVertexArray(rendercommand.mesh->getVAO());
+	if(rendercommand.tex)
+		RenderBackEnd::share()->passTex((GLuint)0, rendercommand.tex->TextureID, RenderType::TexType::Tex2D);
+	RenderBackEnd::share()->bindVAO(rendercommand.mesh->getVAO());
+	RenderBackEnd::share()->drawElements(RenderType::DrawType::TRI, rendercommand.mesh->getIndicesSize(), 0);
 	glDrawElements(GL_TRIANGLES, rendercommand.mesh->getIndicesSize(), GL_UNSIGNED_INT, 0);
-	glBindVertexArray(0);
+	RenderBackEnd::share()->bindVAO(0);
 }
 void Render::renderAll()
 {
-	if (enable2DRender)
-	{
-		renderAllSprite();
-	}
 	if (enableGUIRender)
 	{
 		renderAllGUI();
+	}
+	if (enable2DRender)
+	{
+		renderAllSprite();
 	}
 	if (enable3DRender)
 	{
 		renderAll3DSprite();
 	}
+	Clear();
 }
 void Render::renderAllSprite()
 {
-	std::sort(SpriteCommand.begin(), SpriteCommand.end(), SortByZorder);
+	std::stable_sort(SpriteCommand.begin(), SpriteCommand.end(), SortByZorder);
 	for (int i = 0; i < SpriteCommand.size(); ++i)
 	{
 		render(SpriteCommand[i]);
@@ -87,7 +96,7 @@ void Render::renderAll3DSprite()
 
 void Render::renderAllGUI()
 {
-	std::sort(GUICommand.begin(), GUICommand.end(), SortByZorder);
+	std::stable_sort(GUICommand.begin(), GUICommand.end(), SortByZorder);
 	for (int i = 0; i < GUICommand.size(); ++i)
 	{
 		render(GUICommand[i]);

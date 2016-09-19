@@ -4,6 +4,7 @@ FontMrg * FontMrg::instance = nullptr;
 
 FontMrg::FontMrg()
 {
+	auto font = new Font("H:/VS/game/resource/font/simsun.ttc", 100);
 }
 
 FontMrg * FontMrg::share()
@@ -32,4 +33,9 @@ Font * FontMrg::getFont(std::string path, unsigned int size)
 		fontList[s] = mfont;
 		return mfont;
 	}
+}
+
+void FontMrg::getDefualtFont()
+{
+	defualtFont;
 }

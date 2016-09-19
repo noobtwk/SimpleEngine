@@ -4,9 +4,11 @@
 #include<matrix_transform.hpp>
 #include"Render.h"
 #include"ShaderManager.h"
+#include"SceneManager.h"
 
-Sprite::Sprite(): shader(nullptr),texture(nullptr),mesh(nullptr),contentSize(0.0,0.0),anchorPoint(0.0,0.0),color(1.0,1.0,1.0)
+Sprite::Sprite(): mesh(nullptr)
 {
+	setCamera(SceneManager::share()->getCurScene()->get2DCamera());
 }
 
 Sprite::~Sprite()
@@ -37,28 +39,30 @@ Sprite * Sprite::createWithColor(const vec3 & color,vec2 contentsize)
 
 void Sprite::initWithTexture(Texture2D * tex)
 {
-	contentSize = tex->getSize();
+	setContantSize( tex->getSize());
 	mesh = new Mesh();
-	this->texture = tex;
-	setShader();
-	setRenderRect(contentSize);
+	setTex(tex);
+	initShader();
+	setRenderRect(getContantSize());
 }
 
 void Sprite::initWithColor(const vec3 & color, vec2 contentsize)
 {
 	mesh = new Mesh();
-	this->color = color;
-	contentSize = contentsize;
-	setShader();
-	setRenderRect(contentSize);
+	setColor(color);
+	setContantSize( contentsize);
+	initShader();
+	setRenderRect(getContantSize());
 }
 
 void Sprite::initWithPath(const char * path,bool ahp)
 {
 	mesh = new Mesh();
-	texture = new Texture2D(path, ahp);
-	contentSize = texture->getSize();
-	setShader();
+	auto texture = new Texture2D(path, ahp);
+	setTex(texture);
+	auto contentSize = texture->getSize();
+	setContantSize(contentSize);
+	initShader();
 	setRenderRect(contentSize);
 }
 
@@ -68,20 +72,25 @@ void Sprite::setPos(const vec2 & v)
 	this->setPosition(t);
 }
 
-
-void Sprite::setShader()
+void Sprite::setPos(float x, float y)
 {
-	shader = ShaderManager::share()->creatOrAdd("H:\\VS\\game\\shaders\\sprite.vs", "H:\\VS\\game\\shaders\\sprite.frag");
+	setPos(vec2(x, y));
 }
 
-Texture2D * Sprite::getTexture() const
-{
-	return texture;
-}
 
-Shader * Sprite::getShader() const
+void Sprite::initShader()
 {
-	return shader;
+	if (getTex())
+	{
+		auto shader = ShaderManager::share()->creatOrAdd("H:\\VS\\game\\shaders\\sprite.vs", "H:\\VS\\game\\shaders\\sprite.frag"); 
+		setShader(shader);
+	}
+	else
+	{
+		auto shader = ShaderManager::share()->creatOrAdd("H:\\VS\\game\\shaders\\sprite_color.vs", "H:\\VS\\game\\shaders\\sprite_color.frag");
+		setShader(shader);
+	}
+	
 }
 
 void Sprite::setRenderRect(vec2  size, vec2  lb, vec2  rt)
@@ -101,18 +110,15 @@ void Sprite::setRenderRect(vec2  size, vec2  lb, vec2  rt)
 
 void Sprite::draw()
 {
-	RenderCommand com(mesh, shader,texture,getPosition(),getColor(), RenderCommand::RenderType::Sprite);
-	com.setZorder(priority);
+	RenderCommand com(mesh, getShader(),getCamera(),getTex(),getPos(),getColor(), RenderCommand::RenderType::Sprite);
+	com.setZorder(getGlobalPriority());
 	Render::share()->addRenderCommand(com);
 }
 
-void Sprite::setColor(const vec3 & c)
-{
-	color = c;
-}
 
-vec3 Sprite::getColor() const
+
+Mesh * Sprite::getMesh()
 {
-	return color;
+	return mesh;
 }
 

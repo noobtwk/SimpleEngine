@@ -1,15 +1,13 @@
 #pragma once
 #ifndef SPRITE_H
 #define SPRITE_H
-#include"Texture2D.h"
 #include<glew.h>
 #include <string>
-#include"Shader.h"
-#include"Node.h"
 #include"Mesh.h"
-#include"Camera.h"
+#include"DrawNode2D.h"
 
-class Sprite :public Node
+
+class Sprite :public DrawNode2D
 {
 public:
 	Sprite() ;
@@ -22,25 +20,18 @@ public:
 	void initWithColor(const vec3 &color,vec2 contentsize);
 	void initWithPath(const char *path, bool ahp);
 	void setPos(const vec2 &v);
-	void setShader();
-	Texture2D* getTexture() const;
-	Shader *getShader() const;
+	void setPos(float x, float y);
+	void initShader();
 	
 	void setRenderRect(vec2 size,vec2 lb = vec2(0.0f,0.0f),vec2 rt=vec2(1.0f,1.0f));
 
 	virtual void draw();
 
-	void setColor(const vec3 &c);
-	vec3 getColor() const;
+
+	Mesh *getMesh();
 
 private:
-	Shader *shader;
-	Texture2D *texture;
-	vec2 anchorPoint;
-	vec2 contentSize;
-	vec3 color;
 	Mesh *mesh;
-	Camera *camera;
 };
 
 

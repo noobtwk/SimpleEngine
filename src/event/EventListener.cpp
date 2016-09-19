@@ -33,6 +33,16 @@ bool EventListener::onMouseRelease(int button, vec2 pos)
 	return false;
 }
 
+bool EventListener::onScroll(int x, int y)
+{
+	return false;
+}
+
+bool EventListener::onCharInput(unsigned int c)
+{
+	return false;
+}
+
 int EventListener::getFixedPiority() const
 {
 	return fixedPiority;
@@ -46,4 +56,19 @@ void EventListener::setFiexdPiority(int piority)
 void EventListener::setIsSwallow(bool isSwallow)
 {
 	swallow = isSwallow;
+}
+
+bool EventListener::isSwallow() const
+{
+	return swallow;
+}
+
+void EventListener::setLinkNode(Node * node)
+{
+	linkNode = node;
+}
+
+Node * EventListener::getLinkNode() const
+{
+	return linkNode;
 }

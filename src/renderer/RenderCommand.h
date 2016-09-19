@@ -5,6 +5,7 @@
 #include"Shader.h"
 #include"Render.h"
 #include"Texture2D.h"
+#include"Camera.h"
 class RenderCommand
 {
 	friend class Render;
@@ -14,7 +15,7 @@ public:
 		Sprite,
 		ThreeD
 	};
-	RenderCommand(Mesh *mesh,Shader *shader,Texture2D *texture,vec3 pos,vec3 col,RenderType type=Sprite);
+	RenderCommand(Mesh *mesh,Shader *shader,Camera *camera,Texture2D *texture,vec3 pos,vec3 col,RenderType type=Sprite);
 	~RenderCommand() {};
 
 	void render();
@@ -24,6 +25,7 @@ public:
 
 	vec3 getPos() const;
 	vec3 getColor() const;
+	Camera *getCamera() const;
 
 	RenderType getType() const;
 
@@ -35,6 +37,7 @@ private:
 	Texture2D *tex;
 	vec3 pos;
 	vec3 color;
+	Camera * camera;
 
 };
 

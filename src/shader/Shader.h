@@ -31,6 +31,7 @@ public:
 	void setVector4f(const GLchar *name, GLfloat x, GLfloat y, GLfloat z, GLfloat w, GLboolean useShader = false);
 	void setVector4f(const GLchar *name, vec4 valuse, GLboolean useShader = false);
 	void setMatrix4(const GLchar *name, mat4 valuse, GLboolean useShader = false);
+	void setMatrix4f(const GLchar *name, glm::mat4 valuse, GLboolean useShader = false);
 	void setColor(const GLchar *name, vec3 valuse, GLboolean useShader = false);
 
 private:

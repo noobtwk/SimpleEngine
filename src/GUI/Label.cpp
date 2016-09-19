@@ -4,9 +4,21 @@
 #include"RenderCommand.h"
 #include"Render.h"
 #include"Transform.h"
+#include"SceneManager.h"
 
-Label::Label():font(nullptr),str(""),mesh(nullptr), atlas(nullptr),shader(nullptr),color(vec3(1.0f,1.0f,1.0f))
+Label::Label():font(nullptr),str(""),mesh(nullptr), atlas(nullptr)
 {
+	setCamera(SceneManager::share()->getCurScene()->get2DCamera());
+}
+
+void Label::setPos(vec2 v)
+{
+	setPosition(vec3(v.x, v.y, 0.0));
+}
+
+void Label::setPos(float x, float y)
+{
+	setPos(vec2(x, y));
 }
 
 Label * Label::create(std::string text, Font * font)
@@ -26,29 +38,33 @@ Label * Label::create(std::string text, std::string path, int size)
 	return label;
 }
 
+Label * Label::createL(std::string text, std::string path, int size)
+{
+	auto l = new Label();
+	l->initWithPath(path, size);
+	l->setStr(text);
+	return l;
+}
+
 void Label::initWithhFont(Font * font)
 {
 	this->font = font;
-	setShader();
+	initShader();
 }
 
 void Label::initWithPath(std::string path,unsigned int size)
 {
 	this->font = FontMrg::share()->getFont(path, size);
-	setShader();
+	initShader();
 }
 
 void Label::draw()
 {
-	RenderCommand c(mesh,shader,atlas->getTex(),getPosition(),getColor(),RenderCommand::GUI);
-	c.setZorder(priority);
+	RenderCommand c(mesh,getShader(),getCamera(),atlas->getTex(),getPos(),getColor(),RenderCommand::GUI);
+	c.setZorder(getGlobalPriority());
 	Render::share()->addRenderCommand(c);
 }
 
-void Label::setContainSize(vec2 size)
-{
-	containSize = size;
-}
 
 void Label::setStr(std::string s)
 {
@@ -88,26 +104,27 @@ void Label::initMesh()
 			{ vec3(width,height,0.0f),data->UV(1.0f,1.0f) },
 			{ vec3(0.0f,height,0.0f),data->UV(0.0f,1.0f) }
 		};
-		int diff = data->data.rows - data->data.top + (atlas->getmHeight() - data->data.rows);
+		int diff = data->data.rows - data->data.top + (atlas->getmHeight()- data->data.rows);
 		cmesh->addIndice(indices, 6);
 		cmesh->addVertices(vertices, 4);
 		mat4 trans;
-		glm::mat4 t;
 		if (diff != 0)
 		{
-			float r = oY = diff;
+			float r =  diff;
 			trans.translate(vec3(oX + data->data.left, r, 0.0f));
-			t = glm::translate(t, glm::vec3(oX + data->data.left, r, 0.0f));
 		}
 		mesh->merge(cmesh, trans);
 		oX += data->data.advance;
 		delete cmesh;
 	}
+	setContantSize(vec2(oX, atlas->getmHeight()));
+
 }
 
-void Label::setShader()
+void Label::initShader()
 {
-	shader = ShaderManager::share()->creatOrAdd("H:\\VS\\game\\shaders\\text.vs", "H:\\VS\\game\\shaders\\text.frag");
+	auto shader = ShaderManager::share()->creatOrAdd("H:\\VS\\game\\shaders\\text.vs", "H:\\VS\\game\\shaders\\text.frag");
+	setShader(shader);
 }
 
 GlyphAtlas * Label::getAtlas() const
@@ -115,14 +132,9 @@ GlyphAtlas * Label::getAtlas() const
 	return atlas;
 }
 
-vec3 Label::getColor() const
+Mesh * Label::getMesh()
 {
-	return color;
-}
-
-void Label::setColor(const vec3 & col)
-{
-	color = col;
+	return mesh;
 }
 
 void Label::initAtlas()

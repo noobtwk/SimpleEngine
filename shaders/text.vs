@@ -4,11 +4,10 @@ layout (location = 1) in vec2 texcoords;
 
 out vec2 TexCoords;
 
-uniform mat4 projection;
-uniform mat4 model;
+uniform mat4 mvp_Matrix;
 
 void main()
 {
-    gl_Position = projection * model * vec4(position, 1.0);
+    gl_Position = mvp_Matrix * vec4(position, 1.0);
     TexCoords = texcoords;
 }  
