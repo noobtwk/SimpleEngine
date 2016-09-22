@@ -10,6 +10,8 @@ public:
 	void setContantSize(vec2 c);
 	void setAnchorPoint(vec2 a);
 
+	mat4 getModel();
+
 	vec3 getPos();
 
 	vec2 getContantSize() const;

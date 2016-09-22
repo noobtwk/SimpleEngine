@@ -8,7 +8,7 @@ MathUtil::MathUtil()
 float MathUtil::radians(float theta)
 {
 
-	return  theta / 180.0f;
+	return  PI* theta / 180.0f;
 }
 
 float MathUtil::angles(float rad)
@@ -24,4 +24,13 @@ unsigned int MathUtil::nextPow2(unsigned int num)
 		tmp <<= 1;
 	}
 	return tmp;
+}
+
+float MathUtil::clamp(float v, float low, float high)
+{
+	if (v < low)
+		return low;
+	if (v > high)
+		return high;
+	return v;
 }

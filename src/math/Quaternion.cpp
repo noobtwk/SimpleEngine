@@ -36,36 +36,39 @@ void Quaternion::normalize()
 
 }
 
-Quaternion Quaternion::slerp(Quaternion q0, Quaternion q1, float t)
+Quaternion Quaternion::slerp(Quaternion start, Quaternion end, float dt)
 {
-	Quaternion res;
-	float cosOmega = q0.w*q1.w + q0.x*q1.x + q0.y*q1.y + q0.z*q1.z;
-	if (cosOmega < 0.0f)
-	{
-		q1 = -q1;
-		cosOmega = -cosOmega;
-	}
-	float k0, k1;
-	if (cosOmega > 0.9999f)
-	{
-		k0 = 1.0f - t;
-		k1 = t;
-	}
-	else
-	{
-		float sinOmega = sqrtf(1.0f - cosOmega*cosOmega);
-		float omega = atan2(sinOmega, cosOmega);
+	Quaternion result;
+	float cosHalfTheta = start[0] * end[0] + start[1] * end[1] + start[2] * end[2] + start[3] * end[3],
+		halfTheta,
+		sinHalfTheta,
+		ratioA,
+		ratioB;
 
-		float oneOverSinOmega = 1.0 / sinOmega;
-
-		k0 = sin((1.0f - t) * omega) * oneOverSinOmega;
-		k1 = sin(t*omega)* oneOverSinOmega;
+	if (fabsf(cosHalfTheta) >= 1.0) {
+		result = start;
+		return result;
 	}
-	res.w = q0.w*k0 + q1.w*k1;
-	res.x = q0.x*k0 + q1.x*k1;
-	res.y = q0.y*k0 + q1.y*k1;
-	res.z = q0.z*k0 + q1.z*k1;
-	return res;
+
+	halfTheta = acosf(cosHalfTheta);
+	sinHalfTheta = sqrtf(1.0f - cosHalfTheta * cosHalfTheta);
+
+	if (fabsf(sinHalfTheta) < 0.001f) {
+		result[0] = (start[0] * 0.5f + end[0] * 0.5f);
+		result[1] = (start[1] * 0.5f + end[1] * 0.5f);
+		result[2] = (start[2] * 0.5f + end[2] * 0.5f);
+		result[3] = (start[3] * 0.5f + end[3] * 0.5f);
+		return result;
+	}
+
+	ratioA = sinf((1 - dt) * halfTheta) / sinHalfTheta;
+	ratioB = sinf(dt * halfTheta) / sinHalfTheta;
+
+	result[0] = (start[0] * ratioA + end[0] * ratioB);
+	result[1] = (start[1] * ratioA + end[1] * ratioB);
+	result[2] = (start[2] * ratioA + end[2] * ratioB);
+	result[3] = (start[3] * ratioA + end[3] * ratioB);
+	return result;
 }
 
 void Quaternion::matrixToQua(vec3 Xaxis, vec3 Yaxis, vec3 Zaxis)
@@ -134,42 +137,34 @@ void Quaternion::matrixToQua(vec3 Xaxis, vec3 Yaxis, vec3 Zaxis)
 
 void Quaternion::EulerToQua(vec3 Euler)
 {
-	float RadX = MathUtil::radians(Euler.x / 2.0f);
-	float RadY = MathUtil::radians(Euler.y / 2.0f);
-	float RadZ = -MathUtil::radians(Euler.z / 2.0f);
+	float halfRadx = MathUtil::radians(Euler.x / 2.0f);
+	float halfRady = MathUtil::radians(Euler.y / 2.0f);
+	float halfRadz = -MathUtil::radians(-Euler.z / 2.0f);
 
-	float cosRadX = cosf(RadX);
-	float sinRadX = sinf(RadX);
-	float cosRadY = cosf(RadY);
-	float sinRadY = sinf(RadY);
-	float cosRadZ = cosf(RadZ);
-	float sinRadZ = sinf(RadZ);
-
-	w = cosRadX * cosRadY * cosRadZ + sinRadX * sinRadY * sinRadZ;
-	x = sinRadX * cosRadY * cosRadZ - cosRadX * sinRadY * sinRadZ;
-	y = cosRadX * sinRadY * cosRadZ + sinRadX * cosRadY * sinRadZ;
-	z = cosRadX * cosRadY * sinRadZ - sinRadX * sinRadY * cosRadZ;
+	float coshalfRadx = cosf(halfRadx), sinhalfRadx = sinf(halfRadx), coshalfRady = cosf(halfRady), sinhalfRady = sinf(halfRady), coshalfRadz = cosf(halfRadz), sinhalfRadz = sinf(halfRadz);
+	x = sinhalfRadx * coshalfRady * coshalfRadz - coshalfRadx * sinhalfRady * sinhalfRadz;
+	y = coshalfRadx * sinhalfRady * coshalfRadz + sinhalfRadx * coshalfRady * sinhalfRadz;
+	z = coshalfRadx * coshalfRady * sinhalfRadz - sinhalfRadx * sinhalfRady * coshalfRadz;
+	w = coshalfRadx * coshalfRady * coshalfRadz + sinhalfRadx * sinhalfRady * sinhalfRadz;
 }
 
-void Quaternion::QuaToEuler(float * h, float * p, float * b)
+void Quaternion::QuaToEuler(float *resultX, float *resultY, float *resultZ)
 {
-	float rotatoX, rotatoY, rotatoZ;
-	float sp = -2.0f * (y*z + w*x);
-	if (fabs(sp) > 0.9999f)
-	{
-		rotatoX = 1.570796 * sp;
-		rotatoY = atan2(-x*z - w*y, 0.5f - y*y - z*z);
-		rotatoZ = 0.0f;
-	}
-	else
-	{
-		rotatoX = asin(sp);
-		rotatoY = atan2(w*z - w*y, 0.5f - x*x - y*y);
-		rotatoZ = atan2(x*y - w*z, 0.5f - x*x - z*z);
-	}
-	*h = rotatoX;
-	*p = rotatoY;
-	*b = rotatoZ;
+	float _rotationX, _rotationY, _rotationZ;
+
+	_rotationX = atan2f(2.f * (w * x + y * z), 1.f - 2.f * (x * x + y * y));
+	float sy = 2.f * (w * y - z * x);
+	sy = MathUtil::clamp(sy, -1, 1);
+	_rotationY = asinf(sy);
+	_rotationZ = atan2f(2.f * (w * z + x * y), 1.f - 2.f * (y * y + z * z));
+
+	_rotationX = MathUtil::angles(_rotationX);
+	_rotationY = MathUtil::angles(_rotationY);
+	_rotationZ = -MathUtil::angles(_rotationZ);
+
+	(*resultX) = _rotationX;
+	(*resultY) = _rotationY;
+	(*resultZ) = _rotationZ;
 }
 
 void Quaternion::fromAxises(vec3 xaxis, vec3 yaxis, vec3 zaxis)
@@ -186,8 +181,6 @@ void Quaternion::fromAxises(vec3 xaxis, vec3 yaxis, vec3 zaxis)
 	}
 	else
 	{
-		// Note: since xaxis, yaxis, and zaxis are normalized,
-		// we will never divide by zero in the code below.
 		if (xaxis.x > yaxis.y && xaxis.x > zaxis.z)
 		{
 			float s = 0.5f / sqrtf(1.0f + xaxis.x - yaxis.y - zaxis.z);
@@ -212,6 +205,27 @@ void Quaternion::fromAxises(vec3 xaxis, vec3 yaxis, vec3 zaxis)
 			y = (zaxis.y + yaxis.z) * s;
 			z = 0.25f / s;
 		}
+	}
+}
+
+float & Quaternion::operator[](int index)
+{
+	switch (index)
+	{
+	case 0:
+		return x;
+		break;
+	case 1:
+		return y;
+		break;
+	case 2:
+		return z;
+		break;
+	case 3:
+		return w;
+		break;
+	default:
+		break;
 	}
 }
 

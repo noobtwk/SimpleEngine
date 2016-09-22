@@ -24,9 +24,12 @@ public:
 	void addChild(Node *node);
 	void setScale(const vec3 &v);
 	vec3 getScale() const;
-	void setRotate(const vec3 &r);
-	void setRotate(float x, float y, float z);
-	vec3 getRotate() const;
+
+	void setRotateE(const vec3 &r);
+	void setRotateE(float x, float y, float z);
+	vec3 getRotateE();
+	void setRotateQ(Quaternion &q);
+	Quaternion getRotateQ() const;
 	vec3 getWorldPos();
 	Node *getParent();
 	void setTag(unsigned int tag);
@@ -69,6 +72,7 @@ public:
 	int getChildAmount();
 
 	bool getIsNeedToUpdate();
+	bool getParentIsNeedToUpdate();
 	void setIsNeedToUpdate(bool i);
 
 	static bool sortchild(Node *a,Node *b);

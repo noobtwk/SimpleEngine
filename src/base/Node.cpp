@@ -2,7 +2,7 @@
 #include<algorithm>
 #include"boss.h"
 
-Node::Node() :isAlive(true), position(vec3()), parent(nullptr), isDrawable(true),isNeedToUpdate(true),scale(vec3(1,1,1))
+Node::Node() :isAlive(true), position(vec3()), parent(nullptr), isDrawable(true),isNeedToUpdate(true),scale(vec3(1,1,1)),rotate(Quaternion())
 {
 	Globalpriority = 0;
 	Localpriority = 0;
@@ -26,6 +26,7 @@ void Node::setPosition(const vec3 & v)
 void Node::setPosition(float x, float y, float z)
 {
 	setPosition(vec3(x, y, z));
+	isNeedToUpdate = true;
 }
 
 void Node::setPosition(float x, float y)
@@ -50,11 +51,13 @@ void Node::addChild(Node * node)
 		node->parent = this;
 		sortChildren();
 	}
+	sortChildren();
 }
 
 void Node::setScale(const vec3 &v)
 {
 	this->scale = v;
+	isNeedToUpdate = true;
 }
 
 vec3 Node::getScale() const
@@ -62,20 +65,34 @@ vec3 Node::getScale() const
 	return scale;
 }
 
-void Node::setRotate(const vec3 & r)
+void Node::setRotateE(const vec3 & r)
 {
 	Euler = r;
 	rotate.EulerToQua(Euler);
+	isNeedToUpdate = true;
 }
 
-void Node::setRotate(float x, float y, float z)
+void Node::setRotateE(float x, float y, float z)
 {
-	setRotate(vec3(x, y, z));
+	setRotateE(vec3(x, y, z));
+	isNeedToUpdate = true;
 }
 
-vec3 Node::getRotate() const
+vec3 Node::getRotateE()
 {
 	return Euler;
+}
+
+void Node::setRotateQ(Quaternion  &q)
+{
+	rotate = q;
+	q.QuaToEuler(&Euler.x, &Euler.y, &Euler.z);
+	isNeedToUpdate = true;
+}
+
+Quaternion Node::getRotateQ() const
+{
+	return rotate;
 }
 
 vec3 Node::getWorldPos()
@@ -254,11 +271,12 @@ void Node::visitDraw()
 		children[i]->visitDraw();
 	}
 
+	isNeedToUpdate = false;
+
 	if (!isAlive)
 	{
 		this->getParent()->deleteChild(this);
 		delete this;
-
 	}
 }
 
@@ -288,7 +306,17 @@ int Node::getChildAmount()
 
 bool Node::getIsNeedToUpdate()
 {
-	return isNeedToUpdate;
+	bool parentIs = false;
+	if (parent)
+	{
+		parentIs = getParentIsNeedToUpdate();
+	}
+	return isNeedToUpdate | parentIs;
+}
+
+bool Node::getParentIsNeedToUpdate()
+{
+	return parent->getIsNeedToUpdate();
 }
 
 void Node::setIsNeedToUpdate(bool i)
@@ -305,8 +333,6 @@ void Node::sortChildren()
 {
 	std::stable_sort(children.begin(), children.end(), sortchild);
 }
-
-
 
 
 void Node::update(float dt)
@@ -337,7 +363,7 @@ mat4 Node::getRotateM()
 mat4 Node::getScaleM() 
 {
 	mat4 s;
-	s.scale(scale);
+	s.scale(getScale());
 	return s;
 }
 
