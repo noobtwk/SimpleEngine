@@ -1,6 +1,6 @@
 #include "Mesh.h"
 
-Mesh::Mesh():VAO(-1),VBO(-1),EBO(-1),needToUpdate(true)
+Mesh::Mesh() :VAO(-1), VBO(-1), EBO(-1), needToUpdate(true), needToCalNorm(true)
 {
 }
 
@@ -108,7 +108,6 @@ void Mesh::initRenderData()
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(VertexData), (GLvoid*)(sizeof(vec3)+sizeof(vec2)));
 	glEnableVertexAttribArray(2);
-
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glBindVertexArray(0);
@@ -138,6 +137,11 @@ bool Mesh::IfNeedToUpdate() const
 	return needToUpdate;
 }
 
+bool Mesh::IfNeedToCal() const
+{
+	return needToCalNorm;
+}
+
 void Mesh::calNormal()
 {
 	int s = indices.size();
@@ -156,8 +160,9 @@ void Mesh::calNormal()
 		vertices[index2].normal += normal;
 	}
 
-	for (int i = 0; i < s; i++)
+	for (int i = 0; i < vertices.size(); i++)
 	{
 		vertices[i].normal.normalize();
 	}
+	needToCalNorm = false;
 }

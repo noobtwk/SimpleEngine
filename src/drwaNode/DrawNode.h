@@ -4,7 +4,7 @@
 #include"Node.h"
 #include"Camera.h"
 #include"Shader.h"
-#include"Texture2D.h"
+#include"TextureManager.h"
 
 class DrawNode:public Node
 {

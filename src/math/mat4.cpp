@@ -15,7 +15,7 @@ void mat4::idenity()
 	val[15] = 1;
 }
 
-void mat4::rotato(const Quaternion & Q)
+void mat4::rotate(const Quaternion & Q)
 {
 	float x = Q.x;
 	float y = Q.y;
@@ -58,10 +58,10 @@ void mat4::rotato(const Quaternion & Q)
 	val[15] = 1;
 }
 
-void mat4::rotato(float angle, vec3 axis)
+void mat4::rotate(float angle, vec3 axis)
 {
 	Quaternion q(cos(angle / 2), sin(angle / 2)*axis.x, sin(angle/2)*axis.y,sin(angle/2)*axis.z);
-	rotato(q);
+	rotate(q);
 }
 
 void mat4::translate(const vec3 & v)
@@ -154,7 +154,7 @@ mat4 mat4::transpose()
 	return mat4();
 }
 
-mat4 mat4::inverse(bool *invertible)
+mat4 mat4::inverse()
 {
 	mat4 res;
 	float a00 = val[0], a01 = val[1], a02 = val[2], a03 = val[3],
@@ -178,15 +178,6 @@ mat4 mat4::inverse(bool *invertible)
 		d = (b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06),
 		invDet;
 
-	if (!d)
-	{
-		if (invertible) { (*invertible) = false; }
-		return res;
-	}
-	else
-	{
-		if (invertible) { (*invertible) = true; }
-	}
 	invDet = 1 / d;
 
 	res.val[0] = (a11 * b11 - a12 * b10 + a13 * b09) * invDet;
@@ -218,32 +209,40 @@ mat4 & mat4::operator=(const mat4 & n)
 	return *this;
 }
 
-mat4 mat4::operator*(const mat4 & m) const
+mat4 mat4::operator*(const mat4 & other) const
 {
-	mat4 res;
+	mat4 dest;
+    auto mat2 = other.val;
+    // Cache the matrix values (makes for huge speed increases!)
+    float a00 = val[0], a01 = val[1], a02 = val[2], a03 = val[3],
+            a10 = val[4], a11 = val[5], a12 = val[6], a13 = val[7],
+            a20 = val[8], a21 = val[9], a22 = val[10], a23 = val[11],
+            a30 = val[12], a31 = val[13], a32 = val[14], a33 = val[15],
 
-	res.val[0] = val[0] * m.val[0] + val[1] * m.val[4] + val[2] * m.val[8] + val[3] * m.val[12];
-	res.val[1] = val[0] * m.val[1] + val[1] * m.val[5] + val[2] * m.val[9] + val[3] * m.val[13];
-	res.val[2] = val[0] * m.val[2] + val[1] * m.val[6] + val[2] * m.val[10] + val[3] * m.val[14];
-	res.val[3] = val[0] * m.val[3] + val[1] * m.val[7] + val[2] * m.val[11] + val[3] * m.val[15];
+            b00 = mat2[0], b01 = mat2[1], b02 = mat2[2], b03 = mat2[3],
+            b10 = mat2[4], b11 = mat2[5], b12 = mat2[6], b13 = mat2[7],
+            b20 = mat2[8], b21 = mat2[9], b22 = mat2[10], b23 = mat2[11],
+            b30 = mat2[12], b31 = mat2[13], b32 = mat2[14], b33 = mat2[15];
 
-	res.val[4] = val[4] * m.val[0] + val[5] * m.val[4] + val[6] * m.val[8] + val[7] * m.val[12];
-	res.val[5] = val[4] * m.val[1] + val[5] * m.val[5] + val[6] * m.val[9] + val[7] * m.val[13];
-	res.val[6] = val[4] * m.val[2] + val[5] * m.val[6] + val[6] * m.val[10] + val[7] * m.val[14];
-	res.val[7] = val[4] * m.val[3] + val[5] * m.val[7] + val[6] * m.val[11] + val[7] * m.val[15];
-
-	res.val[8] = val[8] * m.val[0] + val[9] * m.val[4] + val[10] * m.val[8] + val[11] * m.val[12];
-	res.val[9] = val[8] * m.val[1] + val[9] * m.val[5] + val[10] * m.val[9] + val[11] * m.val[13];
-	res.val[10] = val[8] * m.val[2] + val[9] * m.val[6] + val[10] * m.val[10] + val[11]* m.val[14];
-	res.val[11] = val[8] * m.val[3] + val[9] * m.val[7] + val[10] * m.val[11] + val[11] * m.val[15];
-
-	res.val[12] = val[12] * m.val[0] + val[13] * m.val[4] + val[14] * m.val[8] + val[15] * m.val[12];
-	res.val[13] = val[12] * m.val[1] + val[13] * m.val[5] + val[14] * m.val[9] + val[15] * m.val[13];
-	res.val[14] = val[12] * m.val[2] + val[13] * m.val[6] + val[14] * m.val[10] + val[15] * m.val[14];
-	res.val[15] = val[12] * m.val[3] + val[13] * m.val[7] + val[14] * m.val[11] + val[15] * m.val[15];
-
-	return mat4();
+    dest.val[0] = b00 * a00 + b01 * a10 + b02 * a20 + b03 * a30;
+    dest.val[1] = b00 * a01 + b01 * a11 + b02 * a21 + b03 * a31;
+    dest.val[2] = b00 * a02 + b01 * a12 + b02 * a22 + b03 * a32;
+    dest.val[3] = b00 * a03 + b01 * a13 + b02 * a23 + b03 * a33;
+    dest.val[4] = b10 * a00 + b11 * a10 + b12 * a20 + b13 * a30;
+    dest.val[5] = b10 * a01 + b11 * a11 + b12 * a21 + b13 * a31;
+    dest.val[6] = b10 * a02 + b11 * a12 + b12 * a22 + b13 * a32;
+    dest.val[7] = b10 * a03 + b11 * a13 + b12 * a23 + b13 * a33;
+    dest.val[8] = b20 * a00 + b21 * a10 + b22 * a20 + b23 * a30;
+    dest.val[9] = b20 * a01 + b21 * a11 + b22 * a21 + b23 * a31;
+    dest.val[10] = b20 * a02 + b21 * a12 + b22 * a22 + b23 * a32;
+    dest.val[11] = b20 * a03 + b21 * a13 + b22 * a23 + b23 * a33;
+    dest.val[12] = b30 * a00 + b31 * a10 + b32 * a20 + b33 * a30;
+    dest.val[13] = b30 * a01 + b31 * a11 + b32 * a21 + b33 * a31;
+    dest.val[14] = b30 * a02 + b31 * a12 + b32 * a22 + b33 * a32;
+    dest.val[15] = b30 * a03 + b31 * a13 + b32 * a23 + b33 * a33;
+    return dest;
 }
+
 
 vec4 mat4::operator*(const vec4 & v) const
 {
@@ -262,15 +261,15 @@ float * mat4::data()
 	return val;
 }
 
-mat4 rotato(mat4 mat, const Quaternion & q)
+mat4 mat4::rotate(mat4 mat, const Quaternion & q)
 {
 	mat4 rotato;
-	rotato.rotato(q);
+	rotato.rotate(q);
 	mat = mat * rotato;
 	return mat;
 }
 
-mat4 translate(mat4 mat, const vec3 & v)
+mat4 mat4::translate(mat4 mat, const vec3 & v)
 {
 	mat4 t;
 	t.translate(v);
@@ -278,7 +277,7 @@ mat4 translate(mat4 mat, const vec3 & v)
 	return mat;
 }
 
-mat4 scale(mat4 mat, const vec3 & v)
+mat4 mat4::scale(mat4 mat, const vec3 & v)
 {
 	mat4 s;
 	s.scale(v);

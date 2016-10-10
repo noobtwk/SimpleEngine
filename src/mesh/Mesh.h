@@ -33,6 +33,7 @@ public:
 
 	void merge(Mesh *m,mat4 mat);
 	bool IfNeedToUpdate() const;
+	bool IfNeedToCal() const;
 
 	void calNormal();
 
@@ -43,6 +44,7 @@ private:
 	GLuint VBO;
 	GLuint EBO;
 	bool needToUpdate;
+	bool needToCalNorm;
 };
 
 #endif // !MESH_H

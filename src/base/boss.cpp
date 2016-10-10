@@ -34,7 +34,6 @@ void Boss::update(float delta)
 	SceneManager::share()->draw();
 
 
-
 	Render::share()->renderAll();
 }
 

@@ -5,6 +5,8 @@
 #include<vector>
 #include<algorithm>
 #include"mat4.h"
+#include"FrameBuffer.h"
+
 class RenderCommand;
 class Render
 {
@@ -17,6 +19,7 @@ public:
 	void addRenderCommand(RenderCommand rendercommand);
 
 	void render(RenderCommand &rendercommand);
+	void renderSkyBox();
 
 	void renderAll();
 
@@ -25,6 +28,8 @@ public:
 	void renderAll3DSprite();
 
 	void renderAllGUI();
+
+	void DefferRender();
 
 	void Clear();
 	
@@ -37,14 +42,31 @@ public:
 	void setEnable3DRender(bool isEnable3D);
 	bool getEnable3DRender() const;
 
+	void passLightData(RenderCommand &rendercommand);
+
+	static bool sortByDepth(RenderCommand a,RenderCommand b);
+
+	void sort3DSprite();
+
+	void enableDefferRender();
+	void disalblerDefferRender();
+
+	void initMesh();
 
 private:
-	std::vector<RenderCommand> SpriteCommand;
+	std::vector<RenderCommand> Sprite2DCommand;
 	std::vector<RenderCommand> GUICommand;
-	std::vector < RenderCommand> TDSpriteCommand;
+	std::vector < RenderCommand> Sprite3DCommand;
 	bool enable2DRender;
 	bool enableGUIRender;
 	bool enable3DRender;
+	Shader *deffer;
+	Shader *defferLigth;
+	bool defferRender;
+	bool first;
+	Mesh *quad;
+
+	FrameBuffer *fbo;
 
 	static Render *instance;
 };

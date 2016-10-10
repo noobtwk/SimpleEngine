@@ -8,6 +8,8 @@ Camera * Camera::createPerspective(float fovy, float aspect, float near, float f
 {
 	auto c = new Camera();
 	c->setPerperspective(fovy, aspect, near, far);
+	c->initLookAt();
+	c->updateFrustum();
 	return c;
 }
 
@@ -28,9 +30,30 @@ void Camera::setOrtho(float left, float right, float bottom, float top, float ne
 	projection.ortho(left, right, bottom, top, near, far);
 }
 
+void Camera::setProjection(mat4 proj)
+{
+	projection = proj;
+}
+
+mat4 Camera::getProjection()
+{
+	return projection;
+}
+
 mat4 Camera::getViewMatrix()
 {
 	return getTransform().inverse();
+}
+
+mat4 Camera::getViewWithoutMove()
+{
+	mat4 m = getTransform().inverse();
+	auto data = m.data();
+	data[12] = 0;
+	data[13] = 0;
+	data[14] = 0;
+	
+	return m;
 }
 
 mat4 Camera::getProjectionView()
@@ -38,9 +61,14 @@ mat4 Camera::getProjectionView()
 	return projection * getViewMatrix();
 }
 
+mat4 Camera::getSkyBoxProjectionView()
+{
+	return projection *getViewWithoutMove();
+}
+
 void Camera::lookAt(vec3 cameraTarget, vec3 up)
 {
-	auto aixZ = (cameraTarget - position);
+	auto aixZ = (position - cameraTarget);
 	aixZ.normalize();
 	auto aixX = vec3::cross(aixZ, up);
 	aixX.normalize();
@@ -50,4 +78,27 @@ void Camera::lookAt(vec3 cameraTarget, vec3 up)
 	rotate.fromAxises(aixX, aixY, aixZ);
 	isNeedToUpdate = true;
 	recache();
+}
+
+void Camera::initLookAt()
+{
+	setPosition(vec3(0,0,3));
+	lookAt(vec3(), vec3(0, 1, 0));
+}
+
+void Camera::updateFrustum()
+{
+	if (getIsNeedToUpdate())
+	{
+		frustum.initFrustumFromCamera(this);
+	}
+}
+
+bool Camera::isOutFrustum(AABB aabb)
+{
+	return frustum.isOutOfFrustum(aabb);
+}
+
+void Camera::update(float dt)
+{
 }

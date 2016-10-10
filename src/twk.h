@@ -1,6 +1,5 @@
 #include <glew.h>
 #include<SOIL.h>
-#include"game.h"
 #include"Texture2D.h"
 
 #include"Shader.h"
@@ -32,3 +31,6 @@
 #include"MathUtil.h"
 #include"RotateBy.h"
 #include"RotateTo.h"
+
+#include"Cube.h"
+#include"SkyBox.h"

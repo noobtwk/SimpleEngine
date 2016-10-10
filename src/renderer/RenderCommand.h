@@ -12,10 +12,12 @@ class RenderCommand
 public:
 	enum RenderType {
 		GUI,
-		Sprite,
-		ThreeD
+		Sprite2D,
+		Sprite3D
 	};
-	RenderCommand(Mesh *mesh,Shader *shader,Camera *camera,Texture2D *texture,vec3 pos,vec3 col,RenderType type=Sprite);
+	RenderCommand(Mesh *mesh,Shader *shader,Camera *camera,Texture2D *texture,mat4 model,vec3 col,RenderType type);
+	RenderCommand(Mesh *mesh, Shader *shader, Camera *camera, Texture2D *texture, mat4 model, vec3 col, float depth, RenderType type);
+	RenderCommand(Mesh *mesh, Shader *shader, Camera *camera, Texture2D *texture, mat4 model, vec3 col, float depth,bool needLighting ,RenderType type);
 	~RenderCommand() {};
 
 	void render();
@@ -23,11 +25,13 @@ public:
 	void setZorder(unsigned int z);
 	unsigned int getZorder() const;
 
-	vec3 getPos() const;
+	mat4 getTransform() const;
 	vec3 getColor() const;
 	Camera *getCamera() const;
 
 	RenderType getType() const;
+
+	float getDepth() const;
 
 private:
 	unsigned int Zorder;
@@ -35,10 +39,11 @@ private:
 	Mesh *mesh;
 	RenderType type;
 	Texture2D *tex;
-	vec3 pos;
+	mat4 model;
 	vec3 color;
 	Camera * camera;
-
+	float depth;
+	bool needLighting;
 };
 
 

@@ -21,6 +21,7 @@ Node * Node::create()
 void Node::setPosition(const vec3 & v)
 {
 	this->position = v;
+	isNeedToUpdate = true;
 }
 
 void Node::setPosition(float x, float y, float z)
