@@ -14,8 +14,10 @@ public:
 	~Mesh() {};
 	void addIndex(unsigned int index);
 	void addIndice(unsigned int *index, int size);
+	void addIndice(std::vector<unsigned int> index);
 	void addVertex(VertexData vertex);
 	void addVertices(VertexData *vertex, int size);
+	void addVertices(std::vector<VertexData> vertex);
 	int getIndicesSize();
 	int getVerticesSize();
 	void setVAO(const GLuint &vao);
@@ -34,8 +36,11 @@ public:
 	void merge(Mesh *m,mat4 mat);
 	bool IfNeedToUpdate() const;
 	bool IfNeedToCal() const;
+	void setNeetToCal(bool i);
 
 	void calNormal();
+
+	std::vector<VertexData> getVertice();
 
 private:
 	std::vector<int> indices;

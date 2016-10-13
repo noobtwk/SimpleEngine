@@ -4,6 +4,8 @@
 #include"vec3.h"
 #include"mat4.h"
 #include<algorithm>
+#include<vector>
+
 class AABB
 {
 public:
@@ -26,7 +28,7 @@ public:
 	bool contains(const vec3 &v);
 	bool contains(const AABB &box);
 
-
+	std::vector<AABB> division(int depth,int k);
 
 
 

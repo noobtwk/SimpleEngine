@@ -11,14 +11,20 @@ public:
 	~DrawNode3D();
 
 	float getDepth() const;
+	AABB getAABB();
+	void setAABB(AABB aabb);
 
 	mat4 getModel();
 
 	void initDepth();
 
+	void recacheAABB();
+
+	virtual void recache();
 
 private:
 	AABB localAABB;
+	AABB worldAABB;
 	float depth;
 };
 

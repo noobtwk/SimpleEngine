@@ -17,6 +17,14 @@ void Mesh::addIndice(unsigned int *index,int size)
 	}
 }
 
+void Mesh::addIndice(std::vector<unsigned int> index)
+{
+	for (int i = 0; i < index.size(); ++i)
+	{
+		addIndex(index[i]);
+	 }
+}
+
 void Mesh::addVertex(VertexData vertex)
 {
 	vertices.push_back(vertex);
@@ -27,6 +35,14 @@ void Mesh::addVertices(VertexData *vertex,int size)
 	for (int i = 0; i < size; ++i)
 	{
 		vertices.push_back(vertex[i]);
+	}
+}
+
+void Mesh::addVertices(std::vector<VertexData> vertex)
+{
+	for (int i = 0; i < vertex.size(); ++i)
+	{
+		addVertex(vertex[i]);
 	}
 }
 
@@ -120,9 +136,9 @@ void Mesh::merge(Mesh * m,mat4 mat)
 	int offset = vertices.size();
 	for (auto i : m->vertices)
 	{
-		vec4 t(i.Pos.x, i.Pos.y, i.Pos.z, 1.0f);
+		vec4 t(i.pos.x, i.pos.y, i.pos.z, 1.0f);
 		auto res = mat * t;
-		i.Pos = vec3(res.x, res.y, res.z);
+		i.pos = vec3(res.x, res.y, res.z);
 		vertices.push_back(i);
 	}
 	for (auto i : m->indices)
@@ -142,6 +158,11 @@ bool Mesh::IfNeedToCal() const
 	return needToCalNorm;
 }
 
+void Mesh::setNeetToCal(bool i)
+{
+	needToCalNorm = i;
+}
+
 void Mesh::calNormal()
 {
 	int s = indices.size();
@@ -150,8 +171,8 @@ void Mesh::calNormal()
 		int index0 = indices[i];
 		int index1 = indices[i + 1];
 		int index2 = indices[i + 2];
-		vec3 v1 = vertices[index1].Pos-vertices[index0].Pos;
-		vec3 v2 = vertices[index2].Pos - vertices[index0].Pos;
+		vec3 v1 = vertices[index1].pos-vertices[index0].pos;
+		vec3 v2 = vertices[index2].pos - vertices[index0].pos;
 		vec3 normal = vec3::cross(v1, v2);
 		normal.normalize();
 
@@ -165,4 +186,9 @@ void Mesh::calNormal()
 		vertices[i].normal.normalize();
 	}
 	needToCalNorm = false;
+}
+
+std::vector<VertexData> Mesh::getVertice()
+{
+	return vertices;
 }

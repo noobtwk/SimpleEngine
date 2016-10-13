@@ -14,6 +14,16 @@ float DrawNode3D::getDepth() const
 	return depth;
 }
 
+AABB DrawNode3D::getAABB()
+{
+	return worldAABB;
+}
+
+void DrawNode3D::setAABB(AABB aabb)
+{
+	localAABB = aabb;
+}
+
 mat4 DrawNode3D::getModel()
 {
 
@@ -23,4 +33,20 @@ mat4 DrawNode3D::getModel()
 void DrawNode3D::initDepth()
 {
 	depth = vec3::distance(getCamera()->getPosition(), getPosition());
+}
+
+void DrawNode3D::recacheAABB()
+{
+	auto trans = getTransform();
+	if (isNeedToUpdate)
+	{
+		worldAABB = localAABB;
+		worldAABB.transform(trans);
+	}
+}
+
+void DrawNode3D::recache()
+{
+	Node::recache();
+	recacheAABB();
 }

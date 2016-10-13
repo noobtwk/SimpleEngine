@@ -178,7 +178,13 @@ void Cube::initMesh()
 		};
 		mesh[0]->addVertices(vertices, sizeof(vertices) / sizeof(VertexData));
 		mesh[0]->addIndice(indices, sizeof(indices) / sizeof(GLuint));
-
+		AABB aabb;
+		for (int i = 0; i < mesh[0]->getVerticesSize(); ++i)
+		{
+			aabb.add(vertices[i].pos);
+		}
+		setAABB(aabb);
+		
 	}
 
 
@@ -254,6 +260,22 @@ void Cube::initSizeMesh()
 	};
 	mesh[2]->addIndice(indices, sizeof(indices) / sizeof(GLuint));
 	mesh[2]->addVertices(sizeVer, sizeof(sizeVer) / sizeof(VertexData));
+	AABB aabb;
+	auto verTop = mesh[0]->getVertice();
+	for(int i=0;i<mesh[0]->getVerticesSize();++i)
+	{
+		aabb.add(verTop[i].pos);
+	}
+	auto verBottom = mesh[1]->getVertice();
+	for (int i = 0; i < mesh[1]->getVerticesSize(); ++i)
+	{
+		aabb.add(verBottom[i].pos);
+	}
+	for (int i = 0; i < mesh[2]->getVerticesSize(); ++i)
+	{
+		aabb.add(sizeVer[i].pos);
+	}
+	setAABB(aabb);
 }
 
 void Cube::initShader()

@@ -51,7 +51,7 @@ uniform SpotLight spotLight[10];
 
 uniform vec3 viewPos;
 
-uniform sampler2D texture1;
+uniform sampler2D diffuse_map;
 
 vec3 calDirLight(DirLight light,vec3 nor,vec3 viewDir,vec3 tex)
 {
@@ -112,7 +112,7 @@ vec3 calSpotLight(SpotLight light,vec3 norm,vec3 viewDir,vec3 fragPos,vec3 col)
 
 void main()
 {
-	vec3 color1 = texture(texture1,TexCoords).rgb;
+	vec3 color1 = texture(diffuse_map,TexCoords).rgb;
 	vec3 viewDir = normalize(viewPos - FragPos);
 	vec3 normal = normalize(Normal);
 	vec3 result = color1 * ambientL;

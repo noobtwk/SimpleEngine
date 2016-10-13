@@ -12,8 +12,8 @@ AABB::~AABB()
 void AABB::empty()
 {
 	const float N = 1e37f;
-	max.x = max.y = N;
-	min.x = min.y = -N;
+	max.x = max.y = max.z =-N;
+	min.x = min.y = min.z = N;
 }
 
 void AABB::transform(mat4 matrix)
@@ -164,4 +164,47 @@ bool AABB::contains(const AABB & box)
 		return true;
 	}
 	return false;
+}
+
+std::vector<AABB> AABB::division(int depth,int k)
+{
+	std::vector<AABB> list;
+	float s = pow(2, depth );
+	float dtX = (k * (max.x - min.x) / s)/2;
+	float dtY = (k * (max.y - min.y) / s)/2;
+	float dtZ = (k * (max.z - min.z) / s)/2;
+
+	auto cen = center();
+	AABB a[8];
+
+	a[0].add(cen + vec3(dtX, -dtY, -dtZ));
+	a[0].add(vec3(min.x - dtX, max.y + dtY, max.z + dtZ));
+
+	a[1].add(cen + vec3(-dtX, -dtY, -dtZ));
+	a[1].add(vec3(max.x + dtX, max.y + dtY, max.z + dtZ));
+
+	a[2].add(cen + vec3(dtX, -dtY, dtZ));
+	a[2].add(vec3(min.x - dtX, max.y + dtY, min.z - dtZ));
+
+	a[3].add(cen + vec3(-dtX, -dtY, dtZ));
+	a[3].add(vec3(max.x + dtX, max.y + dtY, min.z - dtZ));
+
+	a[4].add(cen + vec3(dtX, dtY, -dtZ));
+	a[4].add(vec3(min.x - dtX, min.y - dtY, max.z + dtZ));
+
+	a[5].add(cen + vec3(-dtX, dtY, -dtZ));
+	a[5].add(vec3(max.x + dtX, min.y - dtY, max.z + dtZ));
+
+	a[6].add(cen + vec3(dtX, dtY, dtZ));
+	a[6].add(vec3(min.x - dtX, min.y - dtY, min.z - dtZ));
+
+	a[7].add(cen + vec3(-dtX, dtY, dtZ));
+	a[7].add(vec3(max.x + dtX, min.y - dtY, min.z - dtZ));
+
+	for (int i = 0; i < 8; ++i)
+	{
+		list.push_back(a[i]);
+	}
+	
+	return list;
 }

@@ -7,7 +7,7 @@ in vec2 TexCoords;
 in vec3 FragPos;
 in vec3 Normal;
 
-uniform sampler2D texture1;
+uniform sampler2D diffuse_map;
 
 //uniform vec3 Color;
 
@@ -18,7 +18,7 @@ void main()
     vec3 norm = normalize(Normal);
     //gl_FragColor = vec4(norm,1.0f);
 
-    gColor = texture(texture1,TexCoords).rgb;
+    gColor = texture(diffuse_map,TexCoords).rgb;
 	
     gNormal = normalize(Normal);
 
