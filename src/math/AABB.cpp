@@ -170,9 +170,9 @@ std::vector<AABB> AABB::division(int depth,int k)
 {
 	std::vector<AABB> list;
 	float s = pow(2, depth );
-	float dtX = (k * (max.x - min.x) / s)/2;
-	float dtY = (k * (max.y - min.y) / s)/2;
-	float dtZ = (k * (max.z - min.z) / s)/2;
+	float dtX = (k * (max.x - min.x) / s)/4;
+	float dtY = (k * (max.y - min.y) / s)/4;
+	float dtZ = (k * (max.z - min.z) / s)/4;
 
 	auto cen = center();
 	AABB a[8];

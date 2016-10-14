@@ -4,6 +4,11 @@
 Scene::Scene()
 {
 	initCamera();
+	AABB area;
+	area.add(vec3(500, 50, 500));
+	area.add(vec3(-500, -50, -500));
+	octree = new Octree();
+	octree->init(area,2);
 }
 
 Scene * Scene::create()
@@ -15,6 +20,7 @@ Scene * Scene::create()
 
 void Scene::addChild(Node * node)
 {
+	node->setScene(this);
 	root.addChild(node);
 }
 
@@ -135,6 +141,26 @@ SkyBox * Scene::getSkyBox()
 	return skybox;
 }
 
+void Scene::enableOctree()
+{
+	useOctree = true;
+}
+
+void Scene::disableOctree()
+{
+	useOctree = false;
+}
+
+bool Scene::ifenableOctree()
+{
+	return useOctree;
+}
+
+void Scene::updateOctreeNode(DrawNode3D * node)
+{
+	octree->updateNode(node);
+}
+
 void Scene::draw()
 {
 	root.visitDraw();
@@ -143,4 +169,6 @@ void Scene::draw()
 void Scene::check()
 {
 	root.check();
+	if(useOctree)
+		octree->cutByCamera(fpcam);
 }

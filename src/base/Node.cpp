@@ -182,6 +182,16 @@ Node * Node::getChildByIndex(int i)
 	return children[i];
 }
 
+void Node::setScene(Scene * s)
+{
+	scene = s;
+}
+
+void Node::setType(Type t)
+{
+	type = t;
+}
+
 void Node::check()
 {
 	update(Boss::share()->getDeltatime());
@@ -191,6 +201,10 @@ void Node::check()
 	if (isNeedToUpdate)
 	{
 		recache();
+		if (type == s3d && scene->ifenableOctree())
+		{
+			scene->updateOctreeNode((DrawNode3D *)this);
+		}
 	}
 	for (auto i : children)
 	{
@@ -225,9 +239,6 @@ mat4 Node::getTransform()
 
 mat4 Node::getModel()
 {
-	auto t = getTranslate();
-	auto r = getRotateM();
-	auto s = getScaleM();
 	return getTranslate() * getRotateM() * getScaleM();
 }
 
@@ -263,10 +274,12 @@ void Node::appear()
 
 void Node::visitDraw()
 {
-	if (isAlive && isDrawable)
+	if (isAlive && isDrawable )
 	{
 		draw();
+
 	}
+
 	for (int i = 0; i < children.size(); ++i)
 	{
 		children[i]->visitDraw();
@@ -333,6 +346,16 @@ bool Node::sortchild(Node * a,Node *b)
 void Node::sortChildren()
 {
 	std::stable_sort(children.begin(), children.end(), sortchild);
+}
+
+void Node::setDrawable(bool i)
+{
+	isDrawable = i;
+}
+
+void Node::setIsAlive(bool i)
+{
+	isAlive = i;
 }
 
 

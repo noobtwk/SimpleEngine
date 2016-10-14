@@ -9,10 +9,16 @@
 #include"ActionManager.h"
 
 class Action;
+class Scene;
 
 class Node
 {
 public:
+	enum Type
+	{
+		s2d,
+		s3d
+	};
 	Node();
 	virtual ~Node();
 
@@ -44,6 +50,10 @@ public:
 	Node *getChildByName(std::string n);
 	Node *getChildByIndex(int i);
 
+	void setScene(Scene *s);
+
+	void setType(Type t);
+
 	void check();
 
 	void runAction(Action * a);
@@ -58,8 +68,6 @@ public:
 	mat4 getScaleM() ;
 
 	void cacheTransform();
-
-	void recache();
 
 	void hide();
 	void appear();
@@ -78,8 +86,12 @@ public:
 	static bool sortchild(Node *a,Node *b);
 	void sortChildren();
 
+	void setDrawable(bool i);
+	void setIsAlive(bool i);
+
 	virtual void update(float dt);
 	virtual void draw();
+	virtual void recache();
 
 protected:
 	bool isAlive;
@@ -96,7 +108,10 @@ protected:
 	std::string name;
 	mat4 worldTransformMartix;
 	ActionManager *actionMrg;
+	Type type;
 	
+	Scene *scene;
+
 	bool isNeedToUpdate;
 
 };

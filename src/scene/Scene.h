@@ -10,6 +10,7 @@
 #include"point.h"
 #include"directional.h"
 #include"SkyBox.h"
+#include"Octree.h"
 
 class Node;
 
@@ -52,6 +53,12 @@ public:
 	void setSkyBox(SkyBox *s);
 	SkyBox* getSkyBox();
 
+	void enableOctree();
+	void disableOctree();
+
+	bool ifenableOctree();
+	void updateOctreeNode(DrawNode3D *node);
+
 	void draw();
 	void check();
 
@@ -66,6 +73,9 @@ private:
 	std::vector<Point*> pointLight;
 	std::vector<Spot*> spotLight;
 	SkyBox *skybox;
+	Octree *octree;
+
+	bool useOctree;
 
 };
 
